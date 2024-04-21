@@ -50,15 +50,6 @@ function Navbar() {
             <Link to="/" className="font-bold ">
               Kitcheen app
             </Link>
-            <div className="dropdown lg:hidden">
-              <button
-                tabIndex={0}
-                role="button"
-                className="btn  btn-primary lg:btn-lg mt-3"
-              >
-                MK
-              </button>
-            </div>
           </div>
 
           <div className="navbar-end">

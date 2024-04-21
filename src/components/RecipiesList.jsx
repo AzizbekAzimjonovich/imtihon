@@ -8,11 +8,11 @@ function RecipiesList({ recipes }) {
 
   useEffect(() => {
     if (deleted) {
-      window.location.reload(); // Reload the page after deletion
+      window.location.reload();
     }
   }, [deleted]);
 
-  const deleteRecipie = (id) => {
+  const del = (id) => {
     fetch("http://localhost:3000/recipies/" + id, {
       method: "DELETE",
     })
@@ -21,7 +21,7 @@ function RecipiesList({ recipes }) {
       })
       .then((data) => {
         console.log(data);
-        setDeleted(true); // Set deleted to true to trigger page reload
+        setDeleted(true);
       })
       .catch((error) => {
         console.log(error);
@@ -45,7 +45,7 @@ function RecipiesList({ recipes }) {
             >
               <div className="p-3 flex flex-col gap-4">
                 <button
-                  onClick={() => deleteRecipie(recipe.id)}
+                  onClick={() => del(recipe.id)}
                   className="flex justify-end"
                 >
                   <MdNotInterested className="h-8 w-8" />
