@@ -47,8 +47,8 @@ function Navbar() {
       >
         <div className="navbar align-element">
           <div className="navbar-start">
-            <Link to="/" className="btn btn-primary lg:btn-lg hidden lg:flex ">
-              MyKitchen
+            <Link to="/" className="font-bold ">
+              Kitcheen app
             </Link>
             <div className="dropdown lg:hidden">
               <button

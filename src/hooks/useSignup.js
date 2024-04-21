@@ -1,32 +1,48 @@
-import {signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 import { useState } from "react";
 
 import { useContext } from "react";
-import{GlobalContext} from '../context/useGlobalContext'
-
+import { GlobalContext } from "../context/useGlobalContext";
 
 function useSignup() {
-  const [user,setUser]=useState(null)
-  const [error,setError]=useState(null)
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
-  const {dispatch} =useContext(GlobalContext)
+  const { dispatch } = useContext(GlobalContext);
 
-  const signupWihtGoogle =()=>{
-  const provider =new GoogleAuthProvider()
-  signInWithPopup(auth, provider)
-  .then((result) => {
-    const user = result.user;
-    setUser(user);
-    dispatch({type:"SIGN_IN",payload:user})
-  })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      setError(errorMessage);
-    });
-  }
-  return {signupWihtGoogle,user,error}
+  const signupWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        dispatch({ type: "  SIGN_IN", payload: user });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
+  };
+  const signupWithPasswordAndEmail = (email, password) => {
+    console.log(email);
+    createUserWithEmailAndPassword(auth, email, password).then(
+      (userCredential) => {
+        const user = userCredential.user;
+        setUser(user);
+        dispatch({ type: "  SIGN_IN", payload: user }).catch((error) => {
+          const errorMessage = error.message;
+          setError(errorMessage);
+        });
+      }
+    );
+  };
+
+  return { signupWithGoogle, user, error, signupWithPasswordAndEmail };
 }
 
-export {useSignup}
+export { useSignup };

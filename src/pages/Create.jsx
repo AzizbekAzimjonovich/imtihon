@@ -10,7 +10,8 @@ function Create() {
   const [ingredient, setIngredient] = useState("");
   const [title, setTitle] = useState("");
   const [method, setMethod] = useState("");
-  const [img, setImg] = useState([]);
+  const [img, setImg] = useState("");
+  const [imgs, setImgs] = useState([]);
   const [cookingTime, setCookingTime] = useState("");
   const [ingredients, setIngredients] = useState([]);
 
@@ -37,12 +38,11 @@ function Create() {
     e.preventDefault();
 
     if (img.trim()) {
-      if (!img.includes(img)) {
-        // Change `images` to `img`
-        setImg((prev) => {
+      if (!imgs.includes(img)) {
+        setImgs((prev) => {
           return [...prev, img];
         });
-        toast.success("Rasm muvaffaqiyatli qo'shildi");
+        toast.success("ingredient added success");
       } else {
         toast.error("Bu rasm allaqachon qo'shilgan");
       }
@@ -50,7 +50,7 @@ function Create() {
       toast.error("Iltimos, biror nima yozing");
     }
 
-    setImg(""); // Set img to an empty string after adding it to the array
+    setImg("");
   };
 
   const handleSubmit = (e) => {
@@ -144,11 +144,10 @@ function Create() {
             </p>
           </div>
         </label>
-
         <label className="form-control w-full max-w-xs">
           <div className="label">
             <span className="label-text text-1xl text-center font-bold">
-              Image:
+              Images:
             </span>
           </div>
           <div className="flex gap-2">
@@ -165,8 +164,8 @@ function Create() {
           </div>
           <div className="mt-1">
             <p>
-              Ingridients:{" "}
-              {img.map((ing) => {
+              Images:{" "}
+              {imgs.map((ing) => {
                 return <span key={ing}>{ing} , </span>;
               })}
             </p>

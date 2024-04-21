@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import RecipieEl from "./RecipieEl";
+import { MdNotInterested } from "react-icons/md";
 
 function RecipiesList({ recipes }) {
   return (
@@ -17,7 +18,9 @@ function RecipiesList({ recipes }) {
               className="w-80 bg-base-100 shadow-xl flex flex-col justify-between"
             >
               <div className="p-3 flex flex-col gap-4">
-                <button className="flex justify-end">delete</button>
+                <button className="flex justify-end">
+                  <MdNotInterested className="h-8 w-8" />
+                </button>
                 <p className="text-2xl">{recipe.title}</p>
                 <p>{recipe.method}</p>
                 <div className="flex gap-2 w-full justify-end mb-4">

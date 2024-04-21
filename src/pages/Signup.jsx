@@ -1,6 +1,6 @@
 import { useSignup } from "../hooks/useSignup";
 import { FcGoogle } from "react-icons/fc";
-import { Link, Form, useActionData } from "react-router-dom";
+import { Link, Form, useActionData, useLoaderData } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import { useEffect } from "react";
 
@@ -26,12 +26,15 @@ function Signup() {
   return (
     <div className="min-h-screen grid place-items-center">
       <div className="max-w-96  w-full items-center">
-        <FormInput type="text" label="Name:" />
-        <FormInput type="email" label="Email:" />
-        <FormInput type="password" label="Password:" />
-        <Form method="post">
+        <Form method="POST">
+          <FormInput type="text" label="User name:" name="Name" />
+          <FormInput type="email" label="Email:" name="Email" />
+          <FormInput type="password" label="Password:" name="Password" />
           <div className="items-center">
-            <button className="btn btn-secondary w-full mb-5" type="submit">
+            <button
+              className="btn btn-secondary w-full mb-5 text-2xl"
+              type="submit"
+            >
               Submit
             </button>
             <button

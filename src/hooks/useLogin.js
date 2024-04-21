@@ -20,7 +20,6 @@ function useLogin() {
       .catch((error) => {
         const errorMessage = error.message;
         setError(errorMessage);
-        setError(error);
       });
   };
   return { signInEmailAndPassword, user, error };
