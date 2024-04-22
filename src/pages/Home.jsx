@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
 import RecipiesList from "../components/RecipiesList";
+import { useCollection } from "../hooks/useCollection";
 
 function Home() {
-  const [recipes, setRecipes] = useState(null);
+  const { data: recipies } = useCollection();
 
-  useEffect(() => {
-    fetch("http://localhost:3000/recipies")
-      .then((data) => {
-        return data.json();
-      })
-      .then((recipes) => {
-        setRecipes(recipes);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  return <div>{recipes && <RecipiesList recipes={recipes} />}</div>;
+  return (
+    <div>
+      <h1>All card</h1>
+      {recipies && <RecipiesList recipies={recipies} />}
+    </div>
+  );
 }
 
 export default Home;

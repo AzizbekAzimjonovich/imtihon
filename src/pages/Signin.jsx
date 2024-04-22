@@ -33,7 +33,10 @@ function Signin() {
         <FormInput type="password" label="Password:" name="password" />
         <Form method="post">
           <div>
-            <button className="btn btn-secondary w-full mb-5" type="submit">
+            <button
+              className="btn btn-secondary w-full mb-5 text-2xl"
+              type="submit"
+            >
               Submit
             </button>
             <button

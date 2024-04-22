@@ -30,16 +30,16 @@ function useSignup() {
   };
   const signupWithPasswordAndEmail = (email, password) => {
     console.log(email);
-    createUserWithEmailAndPassword(auth, email, password).then(
-      (userCredential) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
         const user = userCredential.user;
         setUser(user);
-        dispatch({ type: "  SIGN_IN", payload: user }).catch((error) => {
-          const errorMessage = error.message;
-          setError(errorMessage);
-        });
-      }
-    );
+        dispatch({ type: "  SIGN_IN", payload: user });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
   };
 
   return { signupWithGoogle, user, error, signupWithPasswordAndEmail };

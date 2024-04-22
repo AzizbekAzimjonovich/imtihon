@@ -20,14 +20,18 @@ function Signup() {
     useSignup();
   useEffect(() => {
     if (userSignup) {
-      signupWithPasswordAndEmail(userSignup.email, userSignup.password);
+      signupWithPasswordAndEmail(
+        userSignup.email,
+        userSignup.password,
+        userSignup.name
+      );
     }
   }, [userSignup]);
   return (
     <div className="min-h-screen grid place-items-center">
       <div className="max-w-96  w-full items-center">
         <Form method="POST">
-          <FormInput type="text" label="User name:" name="Name" />
+          <FormInput type="text" label="Name:" name="Name" />
           <FormInput type="email" label="Email:" name="Email" />
           <FormInput type="password" label="Password:" name="Password" />
           <div className="items-center">

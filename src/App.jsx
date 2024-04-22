@@ -4,30 +4,27 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// Layout
 import MainLayout from "./Layout/MainLayout";
 
-// pgeas
 import Home from "./pages/Home";
 import Create from "./pages/Create";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import RecipieEl from "./components/RecipieEl";
 
-// components
 import ProtectedRotes from "./components/ProtectedRotes";
 import Navbar from "./components/Navbar";
 
-//context
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "./context/useGlobalContext";
 
-// firebase
 import { auth } from "./firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 
 import { action as signupAction } from "./pages/Signup";
 import { action as signinAction } from "./pages/Signin";
+
+import { loader as RecipieElLoader } from "./components/RecipieEl";
 
 function App() {
   const { user, dispatch, authChange } = useContext(GlobalContext);
@@ -50,8 +47,9 @@ function App() {
           element: <Create />,
         },
         {
-          path: "/RecipieEl/:id", // Define route for recipe details with dynamic ID parameter
+          path: "/RecipieEl/:id",
           element: <RecipieEl />,
+          loader: RecipieElLoader,
         },
       ],
     },
